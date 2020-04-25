@@ -15,7 +15,7 @@
     </datalist>
     <button type="submit" phx-disable-with="Searching...">Go to Hexdocs</button>
   </form>
-  <%= live_component @socket, TestComponent, content: "ABCtest" %>
+  <%= live_component @socket, TestComponent, id: "hero", content: "ABCtest" %>
   </div>
 
 <%# <%= inspect assigns %>
