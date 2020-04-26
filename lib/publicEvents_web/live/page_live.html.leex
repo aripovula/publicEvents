@@ -1,19 +1,23 @@
 
 <div class="split left">
-  test
+  <ul>
+    used in this app:
+    <li>LiveComponent (stateful, component as source of truth)</li>
+  </ul>
 </div>
 <div class="split right">
-  <h1><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
-  <p>Peace-of-mind from prototype to production</p>
+  <h3><%= gettext "Upcoming %{name}!", name: "events" %></h3>
 
   <form phx-change="suggest" phx-submit="search">
-    <input type="text" name="q" value="<%= @query %>" placeholder="Live dependency search" list="results" autocomplete="off"/>
+    <input class="w30" type="text" name="q" value="<%= @query %>" placeholder="Live dependency search" list="results" autocomplete="off"/>
     <datalist id="results">
       <%= for {app, _vsn} <- @results do %>
         <option value="<%= app %>"><%= app %></option>
       <% end %>
     </datalist>
+    <%= if  Enum.count(Map.to_list(@results)) !== 0 do %>
     <button type="submit" phx-disable-with="Searching...">Go to Hexdocs</button>
+    <%= end %>
   </form>
   <%= live_component @socket, TestComponent, id: "hero", content: "ABCtest" %>
   </div>
