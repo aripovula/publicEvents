@@ -1,0 +1,15 @@
+mix phx.gen.html Accounts User users name:string \
+username:string:unique --web Users
+
+mix phx.gen.context Accounts FedCredential fed_credentials \
+email:string:unique provider:string token:string \
+user_id:references:users
+
+mix phx.gen.html Events Event events title:string description:text \
+views:integer likes:integer start_time:datetime end_time:datetime \
+type:string --web Events
+
+mix phx.gen.context Events Organizer organizers org_name:string \
+user_id:string:unique
+
+mix phx.gen.context Events Participant participants user_id:string:unique
