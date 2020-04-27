@@ -18,7 +18,9 @@ defmodule PublicEvents.Accounts do
 
   """
   def list_users do
-    Repo.all(User)
+    User
+    |> Repo.all()
+    |> Repo.preload(:fed_credential)
   end
 
   @doc """
@@ -35,7 +37,11 @@ defmodule PublicEvents.Accounts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_user!(id), do: Repo.get!(User, id)
+  def get_user!(id) do
+    User
+    |> Repo.get!(id)
+    |> Repo.preload(:fed_credential)
+  end
 
   @doc """
   Creates a user.
@@ -100,5 +106,101 @@ defmodule PublicEvents.Accounts do
   """
   def change_user(%User{} = user, attrs \\ %{}) do
     User.changeset(user, attrs)
+  end
+
+  alias PublicEvents.Accounts.FedCredential
+
+  @doc """
+  Returns the list of fed_credentials.
+
+  ## Examples
+
+      iex> list_fed_credentials()
+      [%FedCredential{}, ...]
+
+  """
+  def list_fed_credentials do
+    Repo.all(FedCredential)
+  end
+
+  @doc """
+  Gets a single fed_credential.
+
+  Raises `Ecto.NoResultsError` if the Fed credential does not exist.
+
+  ## Examples
+
+      iex> get_fed_credential!(123)
+      %FedCredential{}
+
+      iex> get_fed_credential!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_fed_credential!(id), do: Repo.get!(FedCredential, id)
+
+  @doc """
+  Creates a fed_credential.
+
+  ## Examples
+
+      iex> create_fed_credential(%{field: value})
+      {:ok, %FedCredential{}}
+
+      iex> create_fed_credential(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_fed_credential(attrs \\ %{}) do
+    %FedCredential{}
+    |> FedCredential.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a fed_credential.
+
+  ## Examples
+
+      iex> update_fed_credential(fed_credential, %{field: new_value})
+      {:ok, %FedCredential{}}
+
+      iex> update_fed_credential(fed_credential, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_fed_credential(%FedCredential{} = fed_credential, attrs) do
+    fed_credential
+    |> FedCredential.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a fed_credential.
+
+  ## Examples
+
+      iex> delete_fed_credential(fed_credential)
+      {:ok, %FedCredential{}}
+
+      iex> delete_fed_credential(fed_credential)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_fed_credential(%FedCredential{} = fed_credential) do
+    Repo.delete(fed_credential)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking fed_credential changes.
+
+  ## Examples
+
+      iex> change_fed_credential(fed_credential)
+      %Ecto.Changeset{data: %FedCredential{}}
+
+  """
+  def change_fed_credential(%FedCredential{} = fed_credential, attrs \\ %{}) do
+    FedCredential.changeset(fed_credential, attrs)
   end
 end

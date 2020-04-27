@@ -1,10 +1,12 @@
 defmodule PublicEvents.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
+  alias PublicEvents.Accounts.FedCredential
 
   schema "users" do
     field :name, :string
     field :username, :string
+    has_one :fed_credential, FedCredential
 
     timestamps()
   end

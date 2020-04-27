@@ -27,7 +27,7 @@ defmodule PublicEventsWeb.Router do
 
   scope "/users", PublicEventsWeb.Users, as: :users do
     pipe_through :browser
-    resources "/users", UserController
+    resources "/", UserController
   end
 
   # Enables LiveDashboard only for development
