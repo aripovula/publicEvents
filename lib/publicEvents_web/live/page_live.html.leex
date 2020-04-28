@@ -17,7 +17,7 @@
     </datalist>
     <%= if  Enum.count(Map.to_list(@results)) !== 0 do %>
     <button type="submit" phx-disable-with="Searching...">Go to Hexdocs</button>
-    <%= end %>
+    <% end %>
   </form>
   <%= live_component @socket, TestComponent, id: "hero", content: "ABCtest" %>
   </div>
