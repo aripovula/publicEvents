@@ -15,6 +15,6 @@ defmodule PublicEvents.Accounts.FedCredential do
   def changeset(fed_credential, attrs) do
     fed_credential
     |> cast(attrs, [:provider, :token])
-    |> validate_required([:provider, :token])
+    # |> validate_required([:provider, :token])
   end
 end

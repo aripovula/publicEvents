@@ -12,6 +12,16 @@
     <%= @user.username %>
   </li>
 
+  <li>
+    <strong>Provider:</strong>
+    <%= @user.fed_credential.provider %>
+  </li>
+
+  <li>
+    <strong>Token:</strong>
+    <%= @user.fed_credential.token %>
+  </li>
+
 </ul>
 
 <span><%= link "Edit", to: Routes.users_user_path(@conn, :edit, @user) %></span>

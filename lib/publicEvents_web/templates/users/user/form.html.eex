@@ -1,7 +1,7 @@
 <%= form_for @changeset, @action, fn f -> %>
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+      <p>Something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
 
@@ -12,6 +12,22 @@
   <%= label f, :username %>
   <%= text_input f, :username %>
   <%= error_tag f, :username %>
+
+  <div class="form-group">
+    <%= inputs_for f, :fed_credential, fn cf -> %>
+      <%= label cf, :provider %>
+      <%= text_input cf, :provider %>
+      <%= error_tag cf, :provider %>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= inputs_for f, :fed_credential, fn cf -> %>
+      <%= label cf, :token %>
+      <%= text_input cf, :token %>
+      <%= error_tag cf, :token %>
+    <% end %>
+  </div>
 
   <div>
     <%= submit "Save" %>

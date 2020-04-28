@@ -3,7 +3,7 @@ defmodule PublicEventsWeb.Users.UserControllerTest do
 
   alias PublicEvents.Accounts
 
-  @create_attrs %{name: "some name", username: "some username"}
+  @create_attrs %{name: "some name", username: "some username", fed_credential: %{provider: "provider", token: "token"}}
   @update_attrs %{name: "some updated name", username: "some updated username"}
   @invalid_attrs %{name: nil, username: nil}
 
