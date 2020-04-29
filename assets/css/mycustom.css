@@ -45,3 +45,8 @@ input {
   width: 30%;
   size: 30%;
 }
+
+.toRight {
+  float: right;
+  margin-right: 2%;
+}

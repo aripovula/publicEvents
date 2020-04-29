@@ -24,8 +24,18 @@ defmodule PublicEventsWeb.Users.FedAuthController do
     IO.inspect "+++++++  +++++"
     conn
     |> put_flash(:info, "Welcome!")
-    |> put_session(:token, user_params.token)
+    |> put_session(:user_params, user_params)
     |> redirect(to: Routes.users_user_path(conn, :index))
   end
 
+  def signout(conn, _params) do
+    conn
+    |> IO.inspect(label: "Before-+++-", value: get_session(conn, :user_params))
+    |> configure_session(drop: true)
+    |> put_session(:user_params, %{})
+    |> IO.inspect(label: "After-+++-", value: get_session(conn, :user_params))
+    |> redirect(to: Routes.users_user_path(conn, :index))
+  end
+
+  # |> assign(:user_params, %{})
 end

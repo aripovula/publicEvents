@@ -8,6 +8,7 @@ defmodule PublicEventsWeb.Router do
     plug :put_root_layout, {PublicEventsWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug PublicEventsWeb.Plugs.CheckToken
   end
 
   pipeline :api do
@@ -27,6 +28,7 @@ defmodule PublicEventsWeb.Router do
 
   scope "/auth", PublicEventsWeb.Users, as: :users do
     pipe_through :browser
+    get "/signout", FedAuthController, :signout
     get "/:provider", FedAuthController, :request
     get "/:provider/callback", FedAuthController, :callback
     resources "/", UserController
