@@ -1,4 +1,4 @@
-defmodule PublicEventsWeb.Users.FedAuthController do
+defmodule PublicEventsWeb.FedAuthController do
   use PublicEventsWeb, :controller
   plug Ueberauth
 

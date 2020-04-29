@@ -1,4 +1,4 @@
-<h1>Listing Users</h1>
+<h3>Registered users</h3>
 
 <table>
   <thead>
@@ -12,11 +12,10 @@
   <tbody>
 <%= for user <- @users do %>
     <tr>
-      <td><%= user.name %></td>
-      <td><%= user.username %></td>
+      <td><%= link user.name, to: Routes.users_user_path(@conn, :show, user) %></td>
+      <td><%= link user.username, to: Routes.users_user_path(@conn, :show, user) %></td>
 
       <td>
-        <span><%= link "Show", to: Routes.users_user_path(@conn, :show, user) %></span>
         <span><%= link "Edit", to: Routes.users_user_path(@conn, :edit, user) %></span>
         <span><%= link "Delete", to: Routes.users_user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"] %></span>
       </td>

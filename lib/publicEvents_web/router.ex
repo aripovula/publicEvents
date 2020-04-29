@@ -26,12 +26,16 @@ defmodule PublicEventsWeb.Router do
   #   pipe_through :api
   # end
 
-  scope "/auth", PublicEventsWeb.Users, as: :users do
+  scope "/users", PublicEventsWeb.Users, as: :users do
+    pipe_through :browser
+    resources "/", UserController
+  end
+
+  scope "/auth", PublicEventsWeb do
     pipe_through :browser
     get "/signout", FedAuthController, :signout
     get "/:provider", FedAuthController, :request
     get "/:provider/callback", FedAuthController, :callback
-    resources "/", UserController
   end
 
   # Enables LiveDashboard only for development

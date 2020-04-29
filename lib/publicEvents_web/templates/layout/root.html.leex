@@ -20,9 +20,9 @@
         </nav>
         <div class="toRight">
           <%= if @conn.assigns[:user_params] do %>
-            <%= link "Sign out", to: Routes.users_fed_auth_path(@conn, :signout) %>
+            <%= link "Sign out", to: Routes.fed_auth_path(@conn, :signout) %>
           <% else %>
-            <%= link "Sign in", to: Routes.users_fed_auth_path(@conn, :request, "github") %>
+            <%= link "Sign in", to: Routes.fed_auth_path(@conn, :request, "github") %>
           <% end %>
         </div>
       </div>
