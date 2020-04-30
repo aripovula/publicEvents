@@ -8,7 +8,7 @@ defmodule PublicEventsWeb.Router do
     plug :put_root_layout, {PublicEventsWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug PublicEventsWeb.Plugs.CheckToken
+    plug PublicEventsWeb.Plugs.CheckUser
   end
 
   pipeline :api do

@@ -36,7 +36,7 @@ config :ueberauth, Ueberauth.Strategy.Github.OAuth,
 
 config :ueberauth, Ueberauth,
   providers: [
-    # google: { Ueberauth.Strategy.Google, [default_scope: "email profile plus.me"] },
+    # google: { Ueberauth.Strategy.Google, [default_scope: "email profile"] },
     github: { Ueberauth.Strategy.Github, [default_scope: "user:email"] }
   ]
 

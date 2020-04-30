@@ -1,4 +1,4 @@
-defmodule PublicEventsWeb.Plugs.CheckToken do
+defmodule PublicEventsWeb.Plugs.CheckUser do
   import Plug.Conn
   # import Phoenix.Controller
 
