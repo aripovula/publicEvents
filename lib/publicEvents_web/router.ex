@@ -38,6 +38,11 @@ defmodule PublicEventsWeb.Router do
     get "/:provider/callback", FedAuthController, :callback
   end
 
+  scope "/lpe", PublicEventsWeb.LPEvents, as: :lp_events do
+    pipe_through :browser
+    resources "/event", LPEventController
+  end
+
   # Enables LiveDashboard only for development
   #
   # If you want to use the LiveDashboard in production, you should put

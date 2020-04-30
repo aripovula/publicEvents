@@ -1,0 +1,5 @@
+<h1>Edit Lp event</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.lp_events_lp_event_path(@conn, :update, @lp_event)) %>
+
+<span><%= link "Back", to: Routes.lp_events_lp_event_path(@conn, :index) %></span>

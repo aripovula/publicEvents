@@ -1,0 +1,50 @@
+<h1>Listing Lpevents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Likes</th>
+      <th>Start time</th>
+      <th>End time</th>
+      <th>Limitedparticipation</th>
+      <th>Maxparticipants</th>
+      <th>Image</th>
+      <th>Url</th>
+      <th>Venue</th>
+      <th>Notes</th>
+      <th>Type</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for lp_event <- @lpevents do %>
+    <tr>
+      <td><%= lp_event.title %></td>
+      <td><%= lp_event.description %></td>
+      <td><%= lp_event.price %></td>
+      <td><%= lp_event.likes %></td>
+      <td><%= lp_event.start_time %></td>
+      <td><%= lp_event.end_time %></td>
+      <td><%= lp_event.limitedParticipation %></td>
+      <td><%= lp_event.maxParticipants %></td>
+      <td><%= lp_event.image %></td>
+      <td><%= lp_event.url %></td>
+      <td><%= lp_event.venue %></td>
+      <td><%= lp_event.notes %></td>
+      <td><%= lp_event.type %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.lp_events_lp_event_path(@conn, :show, lp_event) %></span>
+        <span><%= link "Edit", to: Routes.lp_events_lp_event_path(@conn, :edit, lp_event) %></span>
+        <span><%= link "Delete", to: Routes.lp_events_lp_event_path(@conn, :delete, lp_event), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Lp event", to: Routes.lp_events_lp_event_path(@conn, :new) %></span>

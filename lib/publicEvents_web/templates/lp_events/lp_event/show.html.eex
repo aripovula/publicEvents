@@ -1,0 +1,73 @@
+<h1>Show Lp event</h1>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @lp_event.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @lp_event.description %>
+  </li>
+
+  <li>
+    <strong>Price:</strong>
+    <%= @lp_event.price %>
+  </li>
+
+  <li>
+    <strong>Likes:</strong>
+    <%= @lp_event.likes %>
+  </li>
+
+  <li>
+    <strong>Start time:</strong>
+    <%= @lp_event.start_time %>
+  </li>
+
+  <li>
+    <strong>End time:</strong>
+    <%= @lp_event.end_time %>
+  </li>
+
+  <li>
+    <strong>Limitedparticipation:</strong>
+    <%= @lp_event.limitedParticipation %>
+  </li>
+
+  <li>
+    <strong>Maxparticipants:</strong>
+    <%= @lp_event.maxParticipants %>
+  </li>
+
+  <li>
+    <strong>Image:</strong>
+    <%= @lp_event.image %>
+  </li>
+
+  <li>
+    <strong>Url:</strong>
+    <%= @lp_event.url %>
+  </li>
+
+  <li>
+    <strong>Venue:</strong>
+    <%= @lp_event.venue %>
+  </li>
+
+  <li>
+    <strong>Notes:</strong>
+    <%= @lp_event.notes %>
+  </li>
+
+  <li>
+    <strong>Type:</strong>
+    <%= @lp_event.type %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.lp_events_lp_event_path(@conn, :edit, @lp_event) %></span>
+<span><%= link "Back", to: Routes.lp_events_lp_event_path(@conn, :index) %></span>
