@@ -15,7 +15,7 @@ defmodule PublicEventsWeb.Users.UserControllerTest do
   describe "index" do
     test "lists all users", %{conn: conn} do
       conn = get(conn, Routes.users_user_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Users"
+      assert html_response(conn, 200) =~ "Registered users"
     end
   end
 

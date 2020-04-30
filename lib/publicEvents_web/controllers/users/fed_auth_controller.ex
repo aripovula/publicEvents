@@ -14,26 +14,29 @@ defmodule PublicEventsWeb.FedAuthController do
       nickname: auth.info.nickname,
       token: auth.credentials.token
     } ||
-    %{email: "abc"}
-    IO.inspect "+++++++ auth +++++"
-    IO.inspect auth
-    IO.inspect "+++++++ params +++++"
-    IO.inspect user_params
-    IO.inspect "+++++++ provider +++++"
-    IO.inspect provider
-    IO.inspect "+++++++  +++++"
+    %{}
+    # IO.inspect "+++++++ auth +++++"
+    # IO.inspect auth
+    # IO.inspect "+++++++ params +++++"
+    # IO.inspect user_params
+    # IO.inspect "+++++++ provider +++++"
+    # IO.inspect provider
+    # IO.inspect "+++++++  +++++"
+    fullname = user_params.first_name && user_params.last_name && "#{user_params.first_name} #{user_params.last_name}"
+    name = fullname && fullname || user_params.nickname || ""
+
     conn
-    |> put_flash(:info, "Welcome!")
+    |> put_flash(:info, "Welcome #{name}!")
     |> put_session(:user_params, user_params)
     |> redirect(to: Routes.users_user_path(conn, :index))
   end
 
   def signout(conn, _params) do
     conn
-    |> IO.inspect(label: "Before-+++-", value: get_session(conn, :user_params))
+    # |> IO.inspect(label: "Before-+++-", value: get_session(conn, :user_params))
     |> configure_session(drop: true)
     |> put_session(:user_params, %{})
-    |> IO.inspect(label: "After-+++-", value: get_session(conn, :user_params))
+    # |> IO.inspect(label: "After-+++-", value: get_session(conn, :user_params))
     |> redirect(to: Routes.users_user_path(conn, :index))
   end
 
