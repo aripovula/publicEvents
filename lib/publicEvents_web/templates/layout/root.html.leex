@@ -19,11 +19,13 @@
           </div>
         </nav>
         <div class="toRight">
-          <%= link "Home", to: Routes.page_path(@conn, :index) %>
+
+          <%= link "Home", to: Routes.live_path(@conn, PublicEventsWeb.LPEventLive) %>
           &nbsp;
           <%= link "Events", to: Routes.lp_events_lp_event_path(@conn, :index) %>
           &nbsp;
           <%= link "Admin", to: Routes.users_user_path(@conn, :index) %>
+
           &nbsp;
           <%= if @conn.assigns[:user_params] do %>
             <%= link "Sign out", to: Routes.fed_auth_path(@conn, :signout) %>

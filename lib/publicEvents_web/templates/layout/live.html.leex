@@ -7,5 +7,17 @@
     phx-click="lv:clear-flash"
     phx-value-key="error"><%= live_flash(@flash, :error) %></p>
 
-  <%= @inner_content %>
+<%# content %>
+  <div class="split left">
+    <ul>
+      used in this app:
+      <li>LiveComponent (stateful, component as source of truth)</li>
+      <li>Überauth for Github OAuth</li>
+      <li>Separate contexts</li>
+    </ul>
+  </div>
+  <div class="split right">
+    <%= @inner_content %>
+  </div>
+<%#  %>
 </main>

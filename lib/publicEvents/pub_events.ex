@@ -21,6 +21,16 @@ defmodule PublicEvents.PubEvents do
     Repo.all(LPEvent)
   end
 
+  def paginate_lpevents(current_page, per_page) do
+    Repo.all(
+      from u in LPEvent,
+        order_by: [asc: u.id],
+        offset: ^((current_page - 1) * per_page),
+        limit: ^per_page
+    )
+  end
+
+
   @doc """
   Gets a single lp_event.
 

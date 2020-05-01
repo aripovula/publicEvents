@@ -1,12 +1,3 @@
-
-<div class="split left">
-  <ul>
-    used in this app:
-    <li>LiveComponent (stateful, component as source of truth)</li>
-    <li>Überauth for Github OAuth (federated) login</li>
-  </ul>
-</div>
-<div class="split right">
   <h3><%= gettext "Upcoming %{name}!", name: "events" %></h3>
 
   <form phx-change="suggest" phx-submit="search">
@@ -21,8 +12,3 @@
     <% end %>
   </form>
   <%= live_component @socket, TestComponent, id: "hero", content: "confirmed" %>
-  </div>
-
-<%# <%= inspect assigns %>
-
-

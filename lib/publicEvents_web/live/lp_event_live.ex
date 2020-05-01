@@ -1,39 +1,48 @@
 defmodule PublicEventsWeb.LPEventLive do
   use PublicEventsWeb, :live_view
 
-  @impl true
+  alias PublicEvents.PubEvents
+  alias PublicEventsWeb.LPEventLiveView
+  alias PublicEventsWeb.Router.Helpers, as: Routes
+
+  def render(assigns), do: LPEventLiveView.render("index.html", assigns)
+
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, query: "", results: %{})}
+    {:ok, assign(socket, page: 1, per_page: 5)}
   end
 
-  @impl true
-  def handle_event("suggest", %{"q" => query}, socket) do
-    {:noreply, assign(socket, results: search(query), query: query)}
+  def handle_params(params, _url, socket) do
+    {page, ""} = Integer.parse(params["page"] || "1")
+    {:noreply, socket |> assign(page: page) |> fetch()}
   end
 
-  @impl true
-  def handle_event("search", %{"q" => query}, socket) do
-    case search(query) do
-      %{^query => vsn} ->
-        {:noreply, redirect(socket, external: "https://hexdocs.pm/#{query}/#{vsn}")}
-
-      _ ->
-        {:noreply,
-         socket
-         |> put_flash(:error, "No dependencies found matching \"#{query}\"")
-         |> assign(results: %{}, query: query)}
-    end
+  defp fetch(socket) do
+    %{page: page, per_page: per_page} = socket.assigns
+    users = PubEvents.paginate_lpevents(page, per_page)
+    assign(socket, users: users, page_title: "Listing Users – Page #{page}")
   end
 
-  defp search(query) do
-    if not PublicEventsWeb.Endpoint.config(:code_reloader) do
-      raise "action disabled when not in development"
-    end
-
-    for {app, desc, vsn} <- Application.started_applications(),
-        app = to_string(app),
-        String.starts_with?(app, query) and not List.starts_with?(desc, ~c"ERTS"),
-        into: %{},
-        do: {app, vsn}
+  def handle_info({PubEvents, [:user | _], _}, socket) do
+    {:noreply, fetch(socket)}
   end
+
+  def handle_event("keydown", %{"code" => "ArrowLeft"}, socket) do
+    {:noreply, go_page(socket, socket.assigns.page - 1)}
+  end
+  def handle_event("keydown", %{"code" => "ArrowRight"}, socket) do
+    {:noreply, go_page(socket, socket.assigns.page + 1)}
+  end
+  def handle_event("keydown", _, socket), do: {:noreply, socket}
+
+  def handle_event("delete_user", %{"id" => id}, socket) do
+    user = PubEvents.get_lp_event!(id)
+    {:ok, _user} = PubEvents.delete_lp_event(user)
+
+    {:noreply, socket}
+  end
+
+  defp go_page(socket, page) when page > 0 do
+    push_patch(socket, to: Routes.live_path(socket, __MODULE__, page))
+  end
+  defp go_page(socket, _page), do: socket
 end
