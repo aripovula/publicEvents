@@ -1,11 +1,11 @@
-defmodule PublicEventsWeb.LPEventLive do
-  use PublicEventsWeb, :live_view
+defmodule PublicEventsWeb.UserLive.Index do
+  use Phoenix.LiveView
 
-  alias PublicEvents.PubEvents
-  alias PublicEventsWeb.LPEventLiveView
+  alias PublicEvents.Accounts
+  alias PublicEventsWeb.UserLiveView
   alias PublicEventsWeb.Router.Helpers, as: Routes
 
-  def render(assigns), do: LPEventLiveView.render("index.html", assigns)
+  def render(assigns), do: UserLiveView.render("index.html", assigns)
 
   def mount(_params, _session, socket) do
     {:ok, assign(socket, page: 1, per_page: 2)}
@@ -18,11 +18,11 @@ defmodule PublicEventsWeb.LPEventLive do
 
   defp fetch(socket) do
     %{page: page, per_page: per_page} = socket.assigns
-    lp_events = PubEvents.paginate_lpevents(page, per_page)
-    assign(socket, lp_events: lp_events, page_title: "Listing Events – Page #{page}")
+    users = Accounts.paginate_users(page, per_page)
+    assign(socket, users: users, page_title: "Listing Users – Page #{page}")
   end
 
-  def handle_info({PubEvents, [:lp_event | _], _}, socket) do
+  def handle_info({Accounts, [:user | _], _}, socket) do
     {:noreply, fetch(socket)}
   end
 
@@ -34,9 +34,9 @@ defmodule PublicEventsWeb.LPEventLive do
   end
   def handle_event("keydown", _, socket), do: {:noreply, socket}
 
-  def handle_event("delete_lp_event", %{"id" => id}, socket) do
-    lp_event = PubEvents.get_lp_event!(id)
-    {:ok, _lp_event} = PubEvents.delete_lp_event(lp_event)
+  def handle_event("delete_user", %{"id" => id}, socket) do
+    user = Accounts.get_user!(id)
+    {:ok, _user} = Accounts.delete_user(user)
 
     {:noreply, socket}
   end

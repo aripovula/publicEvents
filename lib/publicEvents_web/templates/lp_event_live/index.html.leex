@@ -1,7 +1,7 @@
   <h3><%= gettext "Upcoming %{name}!", name: "events" %></h3>
 
   <%= live_component @socket, LPEventComponent, id: "hero", content: "confirmed" %>
-  <%#  %>
+
 <h4>(page <%= @page %>)</h4>
 
 <table phx-keydown-window="keydown" phx-throttle="500">
@@ -15,18 +15,18 @@
     </tr>
   </thead>
   <tbody>
-<%= for user <- @users do %>
+<%= for lp_event <- @lp_events do %>
     <tr>
-      <td><%= user.title %></td>
-      <td><%= user.type %></td>
-      <td><%= "#{user.start_time} #{user.end_time}" %></td>
+      <td><%= lp_event.title %></td>
+      <td><%= lp_event.type %></td>
+      <td><%= "#{Timex.to_date(lp_event.start_time)} thru #{Timex.to_date(lp_event.end_time)}" %></td>
 
       <td>
-        <%# <%= link "Show", to: Routes.live_path(@socket, UserLive.Show, user) %> %>
-        <%# <%= link "Edit", to: Routes.live_path(@socket, UserLive.Edit, user) %> %>
+        <%# <%= link "Show", to: Routes.live_path(@socket, UserLive.Show, lp_event) %> %>
+        <%# <%= link "Edit", to: Routes.live_path(@socket, UserLive.Edit, lp_event) %> %>
         <%= link "Delete", to: "#",
-            phx_click: "delete_user",
-            phx_value_id: user.id %>
+            phx_click: "delete_lp_event",
+            phx_value_id: lp_event.id %>
       </td>
     </tr>
 <% end %>
@@ -34,15 +34,21 @@
 </table>
 
 <%= if @page > 1 do %>
-  <%# <span><%= live_patch "prev", to: Routes.live_path(@socket, PublicEventsWeb.LPEventLive, @page - 1) %></span> %>
+  <span><%= live_patch "prev", to: Routes.live_path(@socket, LPEventLive, @page - 1) %></span>
+<% else %>
+<span style="color:gray">prev</span>
 <% end %>
 <%= for i <- (@page - 2)..(@page + 2), i > 0 do %>
-  <%# <span><%= live_patch "#{i}", to: Routes.live_path(@socket, PublicEventsWeb.LPEventLive, i) %></span> %>
+<%= if @page == i do %>
+  <span style="color:red"><%= @page %></span>
+<% else %>
+  <span><%= live_patch "#{i}", to: Routes.live_path(@socket, LPEventLive, i) %></span>
 <% end %>
-<%# <span><%= live_patch "next", to: Routes.live_path(@socket, PublicEventsWeb.LPEventLive, @page + 1) %></span> %>
+<% end %>
+<span><%= live_patch "next", to: Routes.live_path(@socket, LPEventLive, @page + 1) %></span>
 <br/>
-<%# <span><%= live_redirect "New User (live)", to: Routes.live_path(@socket, UserLive.New) %></span> %>
-<%#  %>
+<%# <span><%= live_redirect "New Event (live)", to: Routes.live_path(@socket, LPEventLive.New) %></span> %>
+
 
 
 
