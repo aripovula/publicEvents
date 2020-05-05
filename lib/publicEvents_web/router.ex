@@ -18,11 +18,11 @@ defmodule PublicEventsWeb.Router do
   scope "/", PublicEventsWeb do
     pipe_through :browser
 
-    live "/:page", LPEventLive
+    live "event/:page", LPEventLive
     live "/", LPEventLive
     live "/page", PageLive
-    live "/users/page/:page", UserLive.Index
-    live "/users", UserLive.Index
+    live "/user/page/:page", UserLive.Index
+    live "/user", UserLive.Index
   end
 
   # Other scopes may use custom stacks.
