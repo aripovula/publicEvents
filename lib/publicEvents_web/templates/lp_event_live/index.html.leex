@@ -26,7 +26,9 @@
         <%# <%= link "Edit", to: Routes.live_path(@socket, UserLive.Edit, lp_event) %> %>
         <%= link "Delete", to: "#",
             phx_click: "delete_lp_event",
-            phx_value_id: lp_event.id %>
+            phx_value_id: lp_event.id
+            # , data: [confirm: "Are you sure?"]
+            %>
       </td>
     </tr>
 <% end %>
@@ -42,10 +44,10 @@
 <%= if @page == i do %>
   <span style="color:red"><%= @page %></span>
 <% else %>
-  <span><%= live_patch "#{i}", to: Routes.live_path(@socket, LPEventLive, i) %></span>
+  <span id="pageAncr"><%= live_patch "#{i}", to: Routes.live_path(@socket, LPEventLive, i) %></span>
 <% end %>
 <% end %>
-<span><%= live_patch "next", to: Routes.live_path(@socket, LPEventLive, @page + 1) %></span>
+<span id="nextAncr"><%= live_patch "next", to: Routes.live_path(@socket, LPEventLive, @page + 1) %></span>
 <br/>
 <%# <span><%= live_redirect "New Event (live)", to: Routes.live_path(@socket, LPEventLive.New) %></span> %>
 

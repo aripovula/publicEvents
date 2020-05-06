@@ -4,8 +4,9 @@ defmodule PublicEventsWeb.PageLiveTest do
   import Phoenix.LiveViewTest
 
   test "disconnected and connected render", %{conn: conn} do
-    {:ok, page_live, disconnected_html} = live(conn, "/")
-    assert disconnected_html =~ "Upcoming events"
-    assert render(page_live) =~ "Upcoming events"
+    {:ok, page_live, disconnected_html} = live(conn, "/page")
+    assert disconnected_html =~ "Page is pages!"
+    assert render(page_live) =~ "Page is pages!"
   end
+
 end
