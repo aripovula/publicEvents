@@ -8,7 +8,7 @@ defmodule PublicEventsWeb.UserLive.Index do
   def render(assigns), do: UserLiveView.render("index.html", assigns)
 
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, page: 1, per_page: 2)}
+    {:ok, assign(socket, page: 1, per_page: 2, users_qnty: Accounts.users_count)}
   end
 
   def handle_params(params, _url, socket) do

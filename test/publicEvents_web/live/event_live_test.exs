@@ -18,7 +18,7 @@ defmodule PublicEventsWeb.LPEventLiveTest do
     assert render(view) =~ "page 2"
   end
 
-  test "goes to page 4", %{conn: conn} do
+  test "goes to page 3", %{conn: conn} do
     {:ok, view, html} = live(conn, "/")
     assert html =~ "page 1"
     assert render(view) =~ "page 1"

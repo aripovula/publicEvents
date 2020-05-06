@@ -18,10 +18,13 @@ defmodule PublicEventsWeb.Router do
   scope "/", PublicEventsWeb do
     pipe_through :browser
 
+    live "/event/new", LPEventLive.New
     live "/event/:page", LPEventLive
     live "/event", LPEventLive
+
     live "/", LPEventLive
     live "/page", PageLive
+    live "/user/new", UserLive.New
     live "/user/page/:page", UserLive.Index # , layout: {MyApp.AlternativeView, "app.html"}
     live "/user", UserLive.Index #, :index
   end

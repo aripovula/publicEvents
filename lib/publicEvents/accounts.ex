@@ -23,6 +23,10 @@ defmodule PublicEvents.Accounts do
     |> Repo.preload(:fed_credential)
   end
 
+  def users_count do
+    Repo.aggregate(User, :count, :id)
+  end
+
   def paginate_users(current_page, per_page) do
     Repo.all(
       from u in User,
