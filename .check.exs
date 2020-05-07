@@ -5,6 +5,7 @@
 
   ## list of tools (see `mix check` docs for defaults)
   tools: [
+    {:cypress, command: "mix cypress.run"}
     ## curated tools may be disabled (e.g. the check for compilation warnings)
     # {:compiler, false},
 
