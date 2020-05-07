@@ -8,5 +8,4 @@ defmodule PublicEventsWeb.PageLiveTest do
     assert disconnected_html =~ "Page is pages!"
     assert render(page_live) =~ "Page is pages!"
   end
-
 end

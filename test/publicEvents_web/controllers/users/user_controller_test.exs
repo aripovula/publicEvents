@@ -3,7 +3,11 @@ defmodule PublicEventsWeb.Users.UserControllerTest do
 
   alias PublicEvents.Accounts
 
-  @create_attrs %{name: "some name", username: "some username", fed_credential: %{provider: "provider", token: "token"}}
+  @create_attrs %{
+    name: "some name",
+    username: "some username",
+    fed_credential: %{provider: "provider", token: "token"}
+  }
   @update_attrs %{name: "some updated name", username: "some updated username"}
   @invalid_attrs %{name: nil, username: nil}
 
@@ -75,6 +79,7 @@ defmodule PublicEventsWeb.Users.UserControllerTest do
     test "deletes chosen user", %{conn: conn, user: user} do
       conn = delete(conn, Routes.users_user_path(conn, :delete, user))
       assert redirected_to(conn) == Routes.users_user_path(conn, :index)
+
       assert_error_sent 404, fn ->
         get(conn, Routes.users_user_path(conn, :show, user))
       end

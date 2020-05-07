@@ -20,8 +20,7 @@ defmodule PublicEvents.MixProject do
   def application do
     [
       mod: {PublicEvents.Application, []},
-      extra_applications: [:logger, :runtime_tools,
-        :ueberauth, :ueberauth_github]
+      extra_applications: [:logger, :runtime_tools, :ueberauth, :ueberauth_github]
     ]
   end
 
@@ -50,7 +49,13 @@ defmodule PublicEvents.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:ueberauth, "~> 0.6"},
       {:ueberauth_github, "~> 0.7"},
-      {:timex, "~> 3.0"}
+      {:timex, "~> 3.0"},
+      # https://github.com/karolsluszniak/ex_check
+      {:ex_check, ">= 0.0.0", only: :dev, runtime: false},
+      {:credo, "~> 1.1", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
+      {:ex_doc, "~> 0.21", only: :dev, runtime: false},
+      {:sobelow, "~> 0.8", only: :dev}
     ]
   end
 

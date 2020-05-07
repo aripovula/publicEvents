@@ -25,8 +25,10 @@ defmodule PublicEventsWeb.Router do
     live "/", LPEventLive
     live "/page", PageLive
     live "/user/new", UserLive.New
-    live "/user/page/:page", UserLive.Index # , layout: {MyApp.AlternativeView, "app.html"}
-    live "/user", UserLive.Index #, :index
+    # , layout: {MyApp.AlternativeView, "app.html"}
+    live "/user/page/:page", UserLive.Index
+    # , :index
+    live "/user", UserLive.Index
   end
 
   # Other scopes may use custom stacks.

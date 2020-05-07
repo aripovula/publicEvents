@@ -23,7 +23,21 @@ defmodule PublicEvents.PubEvents.LPEvent do
   @doc false
   def changeset(lp_event, attrs) do
     lp_event
-    |> cast(attrs, [:title, :description, :price, :likes, :start_time, :end_time, :limitedParticipation, :maxParticipants, :image, :url, :venue, :notes, :type])
+    |> cast(attrs, [
+      :title,
+      :description,
+      :price,
+      :likes,
+      :start_time,
+      :end_time,
+      :limitedParticipation,
+      :maxParticipants,
+      :image,
+      :url,
+      :venue,
+      :notes,
+      :type
+    ])
     |> validate_required([:title, :start_time, :end_time, :type])
   end
 end

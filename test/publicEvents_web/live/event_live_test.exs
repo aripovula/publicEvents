@@ -52,5 +52,4 @@ defmodule PublicEventsWeb.LPEventLiveTest do
   #   lp_event = fixture(:lp_event)
   #   %{lp_event: lp_event}
   # end
-
 end

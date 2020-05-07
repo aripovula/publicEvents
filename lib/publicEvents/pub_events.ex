@@ -30,7 +30,6 @@ defmodule PublicEvents.PubEvents do
     )
   end
 
-
   @doc """
   Gets a single lp_event.
 

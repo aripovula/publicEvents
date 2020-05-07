@@ -29,9 +29,11 @@ defmodule PublicEventsWeb.LPEventLive do
   def handle_event("keydown", %{"code" => "ArrowLeft"}, socket) do
     {:noreply, go_page(socket, socket.assigns.page - 1)}
   end
+
   def handle_event("keydown", %{"code" => "ArrowRight"}, socket) do
     {:noreply, go_page(socket, socket.assigns.page + 1)}
   end
+
   def handle_event("keydown", _, socket), do: {:noreply, socket}
 
   def handle_event("delete_lp_event", %{"id" => id}, socket) do
@@ -44,5 +46,6 @@ defmodule PublicEventsWeb.LPEventLive do
   defp go_page(socket, page) when page > 0 do
     push_patch(socket, to: Routes.live_path(socket, __MODULE__, page))
   end
+
   defp go_page(socket, _page), do: socket
 end

@@ -19,6 +19,5 @@ defmodule PublicEvents.Repo.Migrations.CreateLpevents do
 
       timestamps()
     end
-
   end
 end

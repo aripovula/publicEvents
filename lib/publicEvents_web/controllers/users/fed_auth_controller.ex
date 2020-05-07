@@ -3,17 +3,23 @@ defmodule PublicEventsWeb.FedAuthController do
   plug Ueberauth
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, %{"provider" => provider}) do
-    user_params = provider == "github" &&
-    %{
-      email: auth.info.email,
-      first_name: auth.info.first_name,
-      last_name: auth.info.last_name,
-      nickname: auth.info.nickname,
-      token: auth.credentials.token
-    } ||
-    %{}
-    fullname = user_params.first_name && user_params.last_name && "#{user_params.first_name} #{user_params.last_name}"
-    name = fullname && fullname || user_params.nickname || ""
+    user_params =
+      (provider == "github" &&
+         %{
+           email: auth.info.email,
+           first_name: auth.info.first_name,
+           last_name: auth.info.last_name,
+           nickname: auth.info.nickname,
+           token: auth.credentials.token
+         }) ||
+        %{}
+
+    fullname =
+      user_params.first_name && user_params.last_name &&
+        "#{user_params.first_name} #{user_params.last_name}"
+
+    # credo:disable-for-next-line
+    name = (fullname && fullname) || user_params.nickname || ""
 
     conn
     |> put_flash(:info, "Welcome #{name}!")
@@ -27,5 +33,4 @@ defmodule PublicEventsWeb.FedAuthController do
     |> put_session(:user_params, %{})
     |> redirect(to: Routes.users_user_path(conn, :index))
   end
-
 end

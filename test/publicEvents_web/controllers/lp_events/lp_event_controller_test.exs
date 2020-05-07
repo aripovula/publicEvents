@@ -3,9 +3,51 @@ defmodule PublicEventsWeb.LPEvents.LPEventControllerTest do
 
   alias PublicEvents.PubEvents
 
-  @create_attrs %{description: "some description", end_time: ~N[2010-04-17 14:00:00], image: "some image", likes: 42, limitedParticipation: true, maxParticipants: 42, notes: "some notes", price: 42, start_time: ~N[2010-04-17 14:00:00], title: "some title", type: "some type", url: "some url", venue: "some venue"}
-  @update_attrs %{description: "some updated description", end_time: ~N[2011-05-18 15:01:01], image: "some updated image", likes: 43, limitedParticipation: false, maxParticipants: 43, notes: "some updated notes", price: 43, start_time: ~N[2011-05-18 15:01:01], title: "some updated title", type: "some updated type", url: "some updated url", venue: "some updated venue"}
-  @invalid_attrs %{description: nil, end_time: nil, image: nil, likes: nil, limitedParticipation: nil, maxParticipants: nil, notes: nil, price: nil, start_time: nil, title: nil, type: nil, url: nil, venue: nil}
+  @create_attrs %{
+    description: "some description",
+    end_time: ~N[2010-04-17 14:00:00],
+    image: "some image",
+    likes: 42,
+    limitedParticipation: true,
+    maxParticipants: 42,
+    notes: "some notes",
+    price: 42,
+    start_time: ~N[2010-04-17 14:00:00],
+    title: "some title",
+    type: "some type",
+    url: "some url",
+    venue: "some venue"
+  }
+  @update_attrs %{
+    description: "some updated description",
+    end_time: ~N[2011-05-18 15:01:01],
+    image: "some updated image",
+    likes: 43,
+    limitedParticipation: false,
+    maxParticipants: 43,
+    notes: "some updated notes",
+    price: 43,
+    start_time: ~N[2011-05-18 15:01:01],
+    title: "some updated title",
+    type: "some updated type",
+    url: "some updated url",
+    venue: "some updated venue"
+  }
+  @invalid_attrs %{
+    description: nil,
+    end_time: nil,
+    image: nil,
+    likes: nil,
+    limitedParticipation: nil,
+    maxParticipants: nil,
+    notes: nil,
+    price: nil,
+    start_time: nil,
+    title: nil,
+    type: nil,
+    url: nil,
+    venue: nil
+  }
 
   def fixture(:lp_event) do
     {:ok, lp_event} = PubEvents.create_lp_event(@create_attrs)
@@ -56,7 +98,9 @@ defmodule PublicEventsWeb.LPEvents.LPEventControllerTest do
     setup [:create_lp_event]
 
     test "redirects when data is valid", %{conn: conn, lp_event: lp_event} do
-      conn = put(conn, Routes.lp_events_lp_event_path(conn, :update, lp_event), lp_event: @update_attrs)
+      conn =
+        put(conn, Routes.lp_events_lp_event_path(conn, :update, lp_event), lp_event: @update_attrs)
+
       assert redirected_to(conn) == Routes.lp_events_lp_event_path(conn, :show, lp_event)
 
       conn = get(conn, Routes.lp_events_lp_event_path(conn, :show, lp_event))
@@ -64,7 +108,11 @@ defmodule PublicEventsWeb.LPEvents.LPEventControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn, lp_event: lp_event} do
-      conn = put(conn, Routes.lp_events_lp_event_path(conn, :update, lp_event), lp_event: @invalid_attrs)
+      conn =
+        put(conn, Routes.lp_events_lp_event_path(conn, :update, lp_event),
+          lp_event: @invalid_attrs
+        )
+
       assert html_response(conn, 200) =~ "Edit Lp event"
     end
   end
@@ -75,6 +123,7 @@ defmodule PublicEventsWeb.LPEvents.LPEventControllerTest do
     test "deletes chosen lp_event", %{conn: conn, lp_event: lp_event} do
       conn = delete(conn, Routes.lp_events_lp_event_path(conn, :delete, lp_event))
       assert redirected_to(conn) == Routes.lp_events_lp_event_path(conn, :index)
+
       assert_error_sent 404, fn ->
         get(conn, Routes.lp_events_lp_event_path(conn, :show, lp_event))
       end

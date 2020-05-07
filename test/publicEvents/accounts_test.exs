@@ -24,9 +24,10 @@ defmodule PublicEvents.AccountsTest do
     end
 
     def notLoadedToNilList(u_list) do
-      Enum.map(u_list,
-        fn x -> notLoadedToNil(x)
-        end)
+      Enum.map(
+        u_list,
+        fn x -> notLoadedToNil(x) end
+      )
     end
 
     test "list_users/0 returns all users" do

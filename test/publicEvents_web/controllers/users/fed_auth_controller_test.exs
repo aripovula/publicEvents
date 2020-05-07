@@ -6,7 +6,11 @@ defmodule PublicEventsWeb.FedAuthControllerTest do
     test "redirects to github oAuth when login is successful", %{conn: conn} do
       conn = get(conn, Routes.fed_auth_path(conn, :request, "github"))
 
-      assert String.contains?(redirected_to(conn), "https://github.com/login/oauth/authorize?client_id=")
+      assert String.contains?(
+               redirected_to(conn),
+               "https://github.com/login/oauth/authorize?client_id="
+             )
+
       assert String.contains?(redirected_to(conn), "callback&response_type=code&scope=user")
 
       conn = get(conn, Routes.users_user_path(conn, :index))

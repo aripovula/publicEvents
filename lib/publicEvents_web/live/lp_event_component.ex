@@ -2,7 +2,7 @@ defmodule LPEventComponent do
   use Phoenix.LiveComponent
 
   def handle_event("say_hello", _value, socket) do
-    val = socket.assigns.content == "notConfirmed" && "confirmed" || "notConfirmed"
+    val = (socket.assigns.content == "notConfirmed" && "confirmed") || "notConfirmed"
     {:noreply, assign(socket, content: val)}
   end
 
@@ -15,4 +15,5 @@ defmodule LPEventComponent do
     """
   end
 end
+
 # <%= inspect assigns %>

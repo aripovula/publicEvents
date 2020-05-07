@@ -6,9 +6,51 @@ defmodule PublicEvents.PubEventsTest do
   describe "lpevents" do
     alias PublicEvents.PubEvents.LPEvent
 
-    @valid_attrs %{description: "some description", end_time: ~N[2010-04-17 14:00:00], image: "some image", likes: 42, limitedParticipation: true, maxParticipants: 42, notes: "some notes", price: 42, start_time: ~N[2010-04-17 14:00:00], title: "some title", type: "some type", url: "some url", venue: "some venue"}
-    @update_attrs %{description: "some updated description", end_time: ~N[2011-05-18 15:01:01], image: "some updated image", likes: 43, limitedParticipation: false, maxParticipants: 43, notes: "some updated notes", price: 43, start_time: ~N[2011-05-18 15:01:01], title: "some updated title", type: "some updated type", url: "some updated url", venue: "some updated venue"}
-    @invalid_attrs %{description: nil, end_time: nil, image: nil, likes: nil, limitedParticipation: nil, maxParticipants: nil, notes: nil, price: nil, start_time: nil, title: nil, type: nil, url: nil, venue: nil}
+    @valid_attrs %{
+      description: "some description",
+      end_time: ~N[2010-04-17 14:00:00],
+      image: "some image",
+      likes: 42,
+      limitedParticipation: true,
+      maxParticipants: 42,
+      notes: "some notes",
+      price: 42,
+      start_time: ~N[2010-04-17 14:00:00],
+      title: "some title",
+      type: "some type",
+      url: "some url",
+      venue: "some venue"
+    }
+    @update_attrs %{
+      description: "some updated description",
+      end_time: ~N[2011-05-18 15:01:01],
+      image: "some updated image",
+      likes: 43,
+      limitedParticipation: false,
+      maxParticipants: 43,
+      notes: "some updated notes",
+      price: 43,
+      start_time: ~N[2011-05-18 15:01:01],
+      title: "some updated title",
+      type: "some updated type",
+      url: "some updated url",
+      venue: "some updated venue"
+    }
+    @invalid_attrs %{
+      description: nil,
+      end_time: nil,
+      image: nil,
+      likes: nil,
+      limitedParticipation: nil,
+      maxParticipants: nil,
+      notes: nil,
+      price: nil,
+      start_time: nil,
+      title: nil,
+      type: nil,
+      url: nil,
+      venue: nil
+    }
 
     def lp_event_fixture(attrs \\ %{}) do
       {:ok, lp_event} =
