@@ -26,9 +26,7 @@
         <%# <%= link "Edit", to: Routes.live_path(@socket, UserLive.Edit, lp_event) %> %>
         <%= link "Delete", to: "#",
             phx_click: "delete_lp_event",
-            phx_value_id: lp_event.id
-            # , data: [confirm: "Are you sure?"]
-            %>
+            phx_value_id: lp_event.id, data: [confirm: "Are you sure?"] %>
       </td>
     </tr>
 <% end %>
