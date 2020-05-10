@@ -19,19 +19,19 @@ defmodule PublicEvents.AccountsTest do
       user
     end
 
-    def notLoadedToNil(a_map) do
+    def not_loaded_to_nil(a_map) do
       Map.replace!(a_map, :fed_credential, nil)
     end
 
-    def notLoadedToNilList(u_list) do
+    def not_loaded_to_nil_list(u_list) do
       Enum.map(
         u_list,
-        fn x -> notLoadedToNil(x) end
+        fn x -> not_loaded_to_nil(x) end
       )
     end
 
     test "list_users/0 returns all users" do
-      user = notLoadedToNilList([user_fixture()])
+      user = not_loaded_to_nil_list([user_fixture()])
       fetchedUsers = Accounts.list_users()
       assert fetchedUsers == user
     end
@@ -39,7 +39,7 @@ defmodule PublicEvents.AccountsTest do
     test "get_user!/1 returns the user with given id" do
       user = user_fixture()
       fetchedUser = Accounts.get_user!(user.id)
-      assert fetchedUser == notLoadedToNil(user)
+      assert fetchedUser == not_loaded_to_nil(user)
     end
 
     test "create_user/1 with valid data creates a user" do
@@ -62,7 +62,7 @@ defmodule PublicEvents.AccountsTest do
     test "update_user/2 with invalid data returns error changeset" do
       user = user_fixture()
       assert {:error, %Ecto.Changeset{}} = Accounts.update_user(user, @invalid_attrs)
-      assert notLoadedToNil(user) == Accounts.get_user!(user.id)
+      assert not_loaded_to_nil(user) == Accounts.get_user!(user.id)
     end
 
     test "delete_user/1 deletes the user" do

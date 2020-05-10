@@ -39,5 +39,8 @@ defmodule PublicEvents.PubEvents.LPEvent do
       :type
     ])
     |> validate_required([:title, :start_time, :end_time, :type])
+    |> validate_length(:title, min: 3, max: 100)
+    |> validate_number(:price, greater_than_or_equal_to: 0)
+    |> validate_number(:maxParticipants, greater_than: 0)
   end
 end

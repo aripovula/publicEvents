@@ -1,3 +1,4 @@
+source .env
 MIX_ENV=systemtest mix ecto.reset
 echo "===STARTING PHX SERVER==="
 echo "===IF STARTING CYPRESS FAILS==="

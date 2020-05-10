@@ -25,10 +25,9 @@ defmodule PublicEventsWeb.UserLive.New do
   def handle_event("save", %{"user" => user_params}, socket) do
     case Accounts.create_user(user_params) do
       {:ok, user} ->
-        {:stop,
-         socket
-         |> put_flash(:info, "user created")
-         |> redirect(to: Routes.live_path(socket, UserLive.Show, user))}
+        socket
+        |> put_flash(:info, "user created")
+        |> redirect(to: Routes.live_path(socket, UserLive.Show, user))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, changeset: changeset)}

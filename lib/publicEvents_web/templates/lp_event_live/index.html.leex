@@ -7,9 +7,11 @@
 <table phx-keydown-window="keydown" phx-throttle="500">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Period #</th>
+      <td>name</td>
+      <td>type</td>
+      <td>period #</td>
+      <td>likes</td>
+      <td>price</td>
 
       <th></th>
     </tr>
@@ -17,16 +19,17 @@
   <tbody>
 <%= for lp_event <- @lp_events do %>
     <tr>
-      <td><%= lp_event.title %></td>
+      <td><%= link lp_event.title, to: Routes.live_path(@socket, LPEventLive.Show, lp_event) %></td>
       <td><%= lp_event.type %></td>
       <td><%= "#{Timex.to_date(lp_event.start_time)} thru #{Timex.to_date(lp_event.end_time)}" %></td>
+      <td><%= lp_event.likes %></td>
+      <td><%= lp_event.price %></td>
 
       <td>
-        <%# <%= link "Show", to: Routes.live_path(@socket, UserLive.Show, lp_event) %> %>
-        <%# <%= link "Edit", to: Routes.live_path(@socket, UserLive.Edit, lp_event) %> %>
-        <%= link "Delete", to: "#",
+        <%= link to: Routes.live_path(@socket, LPEventLive.Edit, lp_event) do %><i class="small material-icons">mode_edit</i><% end %>
+        <%= link to: "#",
             phx_click: "delete_lp_event",
-            phx_value_id: lp_event.id, data: [confirm: "Are you sure?"] %>
+            phx_value_id: lp_event.id, data: [confirm: "Are you sure?"] do %><i class="small material-icons">delete_forever</i><% end %>
       </td>
     </tr>
 <% end %>
@@ -34,9 +37,9 @@
 </table>
 
 <%= if @page > 1 do %>
-  <span><%= live_patch "prev", to: Routes.live_path(@socket, LPEventLive, @page - 1) %></span>
+  <span id="prevAncr"><%= live_patch "prev", to: Routes.live_path(@socket, LPEventLive, @page - 1) %></span>
 <% else %>
-<span style="color:gray">prev</span>
+<span style="color:lightgray">prev</span>
 <% end %>
 <%= for i <- (@page - 2)..(@page + 2), i > 0 do %>
 <%= if @page == i do %>
@@ -46,9 +49,5 @@
 <% end %>
 <% end %>
 <span id="nextAncr"><%= live_patch "next", to: Routes.live_path(@socket, LPEventLive, @page + 1) %></span>
+<span id="newAncr"><%= live_redirect to: Routes.live_path(@socket, LPEventLive.New), class: "btn-floating btn-large scale-transition" do %><i class="material-icons">add</i><% end %></span>
 <br/>
-<%# <span><%= live_redirect "New Event (live)", to: Routes.live_path(@socket, LPEventLive.New) %></span> %>
-
-
-
-

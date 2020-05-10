@@ -1,3 +1,4 @@
+source .env
 MIX_ENV=systemtest mix ecto.reset # Need a blank database
 echo "===STARTING PHX SERVER==="
 echo "===IF STARTING CYPRESS FAILS==="

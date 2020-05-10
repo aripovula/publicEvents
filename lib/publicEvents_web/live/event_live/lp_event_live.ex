@@ -39,8 +39,7 @@ defmodule PublicEventsWeb.LPEventLive do
   def handle_event("delete_lp_event", %{"id" => id}, socket) do
     lp_event = PubEvents.get_lp_event!(id)
     {:ok, _lp_event} = PubEvents.delete_lp_event(lp_event)
-
-    {:noreply, socket}
+    {:noreply, push_patch(socket, to: Routes.live_path(socket, __MODULE__, socket.assigns.page))}
   end
 
   defp go_page(socket, page) when page > 0 do

@@ -1,12 +1,16 @@
 context('LPEvents', () => {
 
-  
   beforeEach(() => {
     cy.visit('http://localhost:5000/event')
     cy.fixture('events.json').as('events')
   })
 
-  it('changes page # when next is clicked', function() {
+  it('opens new event form when +new is clicked', function() {
+    cy.get('#newAncr').click()
+    cy.get('h2').should('contain', 'Add new event')
+  })
+
+  it('changes page # when next is clicked', function () {
     cy.log(`There are ${this.events.length} administrators.`)
     cy.get('h3').should('contain', 'Upcoming events!')
     cy.get('h4').should('contain', 'page 1')

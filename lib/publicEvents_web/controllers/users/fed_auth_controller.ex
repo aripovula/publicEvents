@@ -24,13 +24,13 @@ defmodule PublicEventsWeb.FedAuthController do
     conn
     |> put_flash(:info, "Welcome #{name}!")
     |> put_session(:user_params, user_params)
-    |> redirect(to: Routes.users_user_path(conn, :index))
+    |> redirect(to: "/event")
   end
 
   def signout(conn, _params) do
     conn
     |> configure_session(drop: true)
     |> put_session(:user_params, %{})
-    |> redirect(to: Routes.users_user_path(conn, :index))
+    |> redirect(to: "/event")
   end
 end

@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "title": "some title",
     "description": "first description",
     "start_time": "2010-04-17",
     "end_time": "2010-04-17",
@@ -10,13 +11,13 @@
     "maxParticipants": 42,
     "notes": "some notes",
     "price": 42,
-    "title": "some title",
     "type": "some type",
     "url": "some url",
     "venue": "some venue"
   },
   {
     "id": 2,
+    "title": "some title2",
     "description": "some description2",
     "start_time": "2010-04-17",
     "end_time": "2010-04-17",
@@ -26,13 +27,13 @@
     "maxParticipants": 42,
     "notes": "some notes2",
     "price": 42,
-    "title": "some title2",
     "type": "some type2",
     "url": "some url2",
     "venue": "some venue2"
   },
   {
     "id": 3,
+    "title": "some title3",
     "description": "some description3",
     "start_time": "2010-04-17",
     "end_time": "2010-04-17",
@@ -42,7 +43,6 @@
     "maxParticipants": 42,
     "notes": "some notes3",
     "price": 42,
-    "title": "some title3",
     "type": "some type3",
     "url": "some url3",
     "venue": "some venue3"

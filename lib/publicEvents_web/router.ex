@@ -19,7 +19,10 @@ defmodule PublicEventsWeb.Router do
     pipe_through :browser
 
     live "/event/new", LPEventLive.New
-    live "/event/:page", LPEventLive
+    live "/event/notfound", LPEventLive.NotFound
+    live "/event/page/:page", LPEventLive
+    live "/event/:id", LPEventLive.Show
+    live "/event/:id/edit", LPEventLive.Edit
     live "/event", LPEventLive
 
     live "/", LPEventLive

@@ -46,6 +46,8 @@ defmodule PublicEvents.PubEvents do
   """
   def get_lp_event!(id), do: Repo.get!(LPEvent, id)
 
+  def get_lp_event(id), do: Repo.get(LPEvent, id)
+
   @doc """
   Creates a lp_event.
 
