@@ -1,4 +1,4 @@
-context('LPEvents', () => {
+context('LPEvents form', () => {
 
   beforeEach(() => {
     cy.visit('http://localhost:5000/event/new')

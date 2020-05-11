@@ -29,6 +29,7 @@
         <%= link to: Routes.live_path(@socket, LPEventLive.Edit, lp_event) do %><i class="small material-icons">mode_edit</i><% end %>
         <%= link to: "#",
             phx_click: "delete_lp_event",
+            phx_test_id: "delete_lp_event_#{lp_event.title}",
             phx_value_id: lp_event.id, data: [confirm: "Are you sure?"] do %><i class="small material-icons">delete_forever</i><% end %>
       </td>
     </tr>
